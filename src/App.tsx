@@ -1,5 +1,10 @@
 import { useSelector } from 'react-redux';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
 import { useAppConfig } from './api/hooks';
 import { RootState } from './appState/store';
 import ErrorPage from './pages/404';
@@ -9,6 +14,7 @@ import Product from './pages/product';
 
 function App() {
   const APP_ID = useSelector((state: RootState) => state.app.appId);
+  const isEditingPage = useSelector((state: RootState) => state.app.isEditing);
 
   const { isLoading, isError, data } = useAppConfig(APP_ID);
 
@@ -28,6 +34,16 @@ function App() {
             <Route path="/" element={<Home configData={data} />} />
             <Route path="/product">
               <Route index element={<Product configData={data} />} />
+              <Route
+                path="/product/edit"
+                element={
+                  isEditingPage ? (
+                    <Product configData={data} />
+                  ) : (
+                    <Navigate replace to={'/product'} />
+                  )
+                }
+              />
             </Route>
             <Route path="*" element={<ErrorPage />} />
           </Routes>
