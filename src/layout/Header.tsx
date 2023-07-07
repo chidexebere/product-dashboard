@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { RootState } from '../appState/store';
-import { useCachedAppConfig, useProduct } from '../api/hooks';
+import { useCachedAppConfig, useCachedProduct, useProduct } from '../api/hooks';
 import Select from '../components/Select';
 import { selectConfig } from '../appState/slice';
 import { useDispatch } from 'react-redux';
@@ -15,7 +15,10 @@ const appConfig = [
 const Header = () => {
   const APP_ID = useSelector((state: RootState) => state.app.appId);
   const appConfigData = useCachedAppConfig(APP_ID);
+  const cacheData = useCachedProduct();
   const { data } = useProduct();
+
+  const newData = cacheData ? cacheData : data;
 
   const dispatch = useDispatch();
 
@@ -42,9 +45,9 @@ const Header = () => {
             />
           </Link>
           <div className="flex items-center justify-end gap-x-1">
-            {data && (
+            {newData && (
               <Avatar
-                imgUrl={data.user.profilePicture}
+                imgUrl={newData.user.profilePicture}
                 className=" hidden md:block rounded-full w-[25px] mr-2"
               />
             )}

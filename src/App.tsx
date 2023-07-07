@@ -5,6 +5,7 @@ import { RootState } from './appState/store';
 import ErrorPage from './pages/404';
 import Home from './pages/home';
 import Loading from './pages/loading';
+import Product from './pages/product';
 
 function App() {
   const APP_ID = useSelector((state: RootState) => state.app.appId);
@@ -25,6 +26,9 @@ function App() {
         <div className="bg-[#F9FAFB]">
           <Routes>
             <Route path="/" element={<Home configData={data} />} />
+            <Route path="/product">
+              <Route index element={<Product configData={data} />} />
+            </Route>
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </div>
