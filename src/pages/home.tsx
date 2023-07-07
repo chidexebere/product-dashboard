@@ -1,9 +1,24 @@
+import { useEffect } from 'react';
 import Layout from '../layout';
 
-const Home = () => {
+interface Props {
+  configData: ConfigObject;
+}
+
+const Home = ({ configData }: Props) => {
+  const { logo } = configData;
+
   return (
     <Layout>
-      <div className="mt-20 flex justify-center">home</div>
+      <div className="mt-20 flex justify-center">
+        <img
+          src={logo}
+          alt="Big Logo"
+          loading="lazy"
+          width="400"
+          height="400"
+        />
+      </div>
     </Layout>
   );
 };
