@@ -17,7 +17,7 @@ const UserProfile = ({
 
   return (
     <div className="flex items-center gap-x-2.5 pb-2.5">
-      <Avatar className={profilePictureStyles} imgUrl={user.position} />
+      <Avatar className={profilePictureStyles} imgUrl={user.profilePicture} />
       <div className="flex flex-col items-start gap-y-[5px] py-[5px]">
         <p className={userNameStyles}>
           {user.firstName} {user.lastName}

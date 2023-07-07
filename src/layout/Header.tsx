@@ -48,7 +48,6 @@ const Header = () => {
                 className=" hidden md:block rounded-full w-[25px] mr-2"
               />
             )}
-
             <Select options={appConfig} handleClick={handleSelectAppConfig} />
           </div>
         </nav>
