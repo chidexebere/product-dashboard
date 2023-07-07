@@ -1,6 +1,7 @@
 import Layout from '../layout';
 import Loading from './loading';
 import { useProduct, useTrl } from '../api/hooks';
+import ProductHeader from '../components/Product/ProductHeader';
 
 interface Props {
   configData: ConfigObject;
@@ -35,7 +36,9 @@ const Product = ({ configData }: Props) => {
   return (
     <Layout>
       {data && trl && (
-        <div className="flex flex-col gap-5 px-2.5 py-5 lg:p-0">Product</div>
+        <div className="flex flex-col gap-5 px-2.5 py-5 lg:p-0">
+          <ProductHeader product={data} />
+        </div>
       )}
     </Layout>
   );

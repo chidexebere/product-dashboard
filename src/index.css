@@ -2,7 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 @tailwind base;
+@layer base {
+  h1 {
+    @apply text-xl;
+  }
+  h2 {
+    @apply text-base font-semibold text-[#374151];
+  }
+  
+}
+
 @tailwind components;
+@layer components {
+  .text-primary {
+    @apply text-sm leading-6 font-normal text-[#6B7280];
+  }
+  .inputClass { 
+    @apply w-full text-sm text-gray-500 bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-500 focus:outline-none font-medium;
+  }
+}
 @tailwind utilities;
 
 body {
@@ -80,3 +98,5 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+
+
