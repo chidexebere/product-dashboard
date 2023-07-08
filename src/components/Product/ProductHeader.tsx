@@ -58,7 +58,7 @@ const ProductHeader = ({ product }: Props) => {
       </Breadcrumb>
       <Link to={`/product/edit`}>
         <Button
-          className="text-white"
+          className="text-white hover:text-slate-400"
           handleClick={handleEditingPage}
           styles={{
             backgroundColor: appConfigData?.mainColor,
