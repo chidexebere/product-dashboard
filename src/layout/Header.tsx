@@ -6,6 +6,7 @@ import Select from '../components/Select';
 import { selectConfig } from '../appState/slice';
 import { useDispatch } from 'react-redux';
 import Avatar from '../components/User/Avatar';
+import Searchbar from '../components/Searchbar';
 
 const appConfig = [
   { text: 'APP 1', value: 1 },
@@ -34,24 +35,31 @@ const Header = () => {
       style={{ backgroundColor: `${appConfigData?.mainColor}` }}
     >
       <div className="flex justify-center">
-        <nav className="w-full 2xl:w-[1410px] flex items-center justify-between p-4 2xl:px-0 ml-8 2xl:m-0 ">
-          <Link to="/" className="">
-            <img
-              src={appConfigData?.logo}
-              alt="Logo"
-              loading="lazy"
-              width="100"
-              height="50"
-            />
-          </Link>
-          <div className="flex items-center justify-end gap-x-1">
-            {newData && (
-              <Avatar
-                imgUrl={newData.user.profilePicture}
-                className=" hidden md:block rounded-full w-[25px] mr-2"
+        <nav className="flex items-center justify-between w-full 2xl:w-[1410px] p-4 2xl:px-0 ml-8 2xl:m-0 ">
+          <div className="w-full 2xl:w-[280px]">
+            <Link to="/" className="">
+              <img
+                src={appConfigData?.logo}
+                alt="Logo"
+                loading="lazy"
+                width="100"
+                height="50"
               />
-            )}
-            <Select options={appConfig} handleClick={handleSelectAppConfig} />
+            </Link>
+          </div>
+          <div className="flex items-center justify-end 2xl:justify-between w-full 2xl:w-[1130px]">
+            <div className="hidden 2xl:block 2xl:w-[500px]">
+              <Searchbar />
+            </div>
+            <div className="flex items-center justify-end gap-x-1">
+              {newData && (
+                <Avatar
+                  imgUrl={newData.user.profilePicture}
+                  className=" hidden md:block rounded-full w-[25px] mr-2"
+                />
+              )}
+              <Select options={appConfig} handleClick={handleSelectAppConfig} />
+            </div>
           </div>
         </nav>
       </div>
