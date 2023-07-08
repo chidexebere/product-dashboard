@@ -6,14 +6,15 @@ type SelectOptions = {
 interface Props {
   options: SelectOptions[];
   handleClick?: (e: React.MouseEvent<HTMLSelectElement>) => void;
+  className?: string;
 }
 
-const Select = ({ options, handleClick }: Props) => {
+const Select = ({ options, handleClick, className }: Props) => {
   return (
     <select
       name="dropdown"
       id="dropdown-select"
-      className="bg-black border-0 text-white text-sm w-fit px-3 py-1 font-medium rounded-lg focus:ring-gray-500 focus:border-gray-500 uppercase cursor-pointer"
+      className={`border-0 w-fit cursor-pointer ${className}`}
       onClick={handleClick}
     >
       {options.map((option, index) => (
