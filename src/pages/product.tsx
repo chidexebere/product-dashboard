@@ -3,6 +3,7 @@ import Loading from './loading';
 import { useProduct, useTrl } from '../api/hooks';
 import ProductHeader from '../components/Product/ProductHeader';
 import ProductInfo from '../components/Product/ProductInfo';
+import ProductVideo from '../components/Product/ProductVideo';
 
 interface Props {
   configData: ConfigObject;
@@ -40,6 +41,7 @@ const Product = ({ configData }: Props) => {
         <div className="flex flex-col gap-5 px-2.5 py-5 lg:p-0">
           <ProductHeader product={data} />
           <ProductInfo product={data} configData={configData} />
+          <ProductVideo product={data} />
         </div>
       )}
     </Layout>
