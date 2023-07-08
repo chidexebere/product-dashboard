@@ -4,6 +4,7 @@ import { useProduct, useTrl } from '../api/hooks';
 import ProductHeader from '../components/Product/ProductHeader';
 import ProductInfo from '../components/Product/ProductInfo';
 import ProductVideo from '../components/Product/ProductVideo';
+import ProductDescription from '../components/Product/ProductDescription';
 
 interface Props {
   configData: ConfigObject;
@@ -42,6 +43,7 @@ const Product = ({ configData }: Props) => {
           <ProductHeader product={data} />
           <ProductInfo product={data} configData={configData} />
           <ProductVideo product={data} />
+          <ProductDescription product={data} trlList={trl} />
         </div>
       )}
     </Layout>
