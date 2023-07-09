@@ -33,9 +33,15 @@ A sample dashboard that can display and edit product information.
 3. Dashboard showing product edit page.
    ![dashboard product edit page ](./public/screenshots/edit.jpg)
 
-## Installation
+## Setup
 
 You would need to have [Node.js](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/) installed.
+
+First, clone the repository:
+
+```bash
+https://github.com/chidexebere/product-dashboard
+```
 
 To install dependencies, you can run:
 
@@ -61,17 +67,6 @@ To run test locally, in the project directory, run:
 ```bash
 yarn test
 ```
-
-## Setup Process
-
-- Run create react app
-- Setup linting, code formatting and styling
-- Setup layout and some primary components
-- Setup env file and API functions to fetch data and manage state
-- Create composite components
-- Make components editable
-- Write test
-- Modify, test and repeat.
 
 ## Technologies used
 
