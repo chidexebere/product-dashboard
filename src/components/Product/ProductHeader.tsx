@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RiHomeLine } from 'react-icons/ri';
 import { HiChevronRight } from 'react-icons/hi';
 
@@ -20,8 +20,11 @@ const ProductHeader = ({ product }: Props) => {
   const isEditingPage = useSelector((state: RootState) => state.app.isEditing);
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const handleEditingPage = () => {
     dispatch(editPage());
+    navigate('/product/edit');
   };
 
   return (
@@ -56,18 +59,17 @@ const ProductHeader = ({ product }: Props) => {
           <li className="text-primary text-blue-500">...editing</li>
         )}
       </Breadcrumb>
-      <Link to={`/product/edit`}>
-        <Button
-          className="text-white hover:text-slate-400"
-          handleClick={handleEditingPage}
-          styles={{
-            backgroundColor: appConfigData?.mainColor,
-            borderColor: appConfigData?.mainColor,
-          }}
-        >
-          {isEditingPage ? 'View Product' : 'Edit'}
-        </Button>
-      </Link>
+
+      <Button
+        className="text-white hover:text-slate-400"
+        handleClick={handleEditingPage}
+        styles={{
+          backgroundColor: appConfigData?.mainColor,
+          borderColor: appConfigData?.mainColor,
+        }}
+      >
+        {isEditingPage ? 'View Product' : 'Edit'}
+      </Button>
     </div>
   );
 };

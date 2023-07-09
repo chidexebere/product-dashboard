@@ -5,6 +5,10 @@ import ProductHeader from '../components/Product/ProductHeader';
 import ProductInfo from '../components/Product/ProductInfo';
 import ProductVideo from '../components/Product/ProductVideo';
 import ProductDescription from '../components/Product/ProductDescription';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { editPage } from '../appState/slice';
 
 interface Props {
   configData: ConfigObject;
@@ -12,8 +16,16 @@ interface Props {
 
 const Product = ({ configData }: Props) => {
   const { isLoading, isError, data } = useProduct();
-
   const { data: trl } = useTrl();
+
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (location.pathname === '/product') {
+      dispatch(editPage());
+    }
+  }, [location.pathname]);
 
   if (isError) {
     return (
