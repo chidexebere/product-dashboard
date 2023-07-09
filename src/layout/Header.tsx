@@ -30,8 +30,7 @@ const Header = () => {
 
   const dispatch = useDispatch();
 
-  const handleSelectAppConfig = (e: React.MouseEvent<HTMLSelectElement>) => {
-    e.preventDefault();
+  const handleSelectAppConfig = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target as HTMLSelectElement;
     dispatch(selectConfig(value));
   };
@@ -74,7 +73,8 @@ const Header = () => {
               <Select
                 className="text-primary bg-black text-white text-sm px-3 py-1 font-medium rounded-lg focus:ring-gray-500 focus:border-gray-500 uppercase"
                 options={appConfig}
-                handleClick={handleSelectAppConfig}
+                handleChange={handleSelectAppConfig}
+                selected={APP_ID}
               />
             </div>
           </div>
