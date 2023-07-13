@@ -1,25 +1,33 @@
-import { Dispatch, SetStateAction, useState } from 'react';
 import { useEditProduct } from '../../api/hooks';
 import EdiText from 'react-editext';
 
 interface EditableLabelProps {
   listId: number;
   name: string;
+  labelType: string;
+  lists: ListObject[];
 }
-const EditableLabel = ({ listId, name }: EditableLabelProps) => {
-  const [newName, setNewName] = useState(name);
-
+const EditableLabel = ({
+  listId,
+  name,
+  labelType,
+  lists,
+}: EditableLabelProps) => {
   const editNewList = useEditProduct();
 
   const handleEditList = (newName: string) => {
-    editNewList.mutate({ id: listId, name: newName });
-    setNewName(newName);
+    const indexToEdit = lists.findIndex((item) => item.id === listId);
+    lists[indexToEdit].name = newName;
+
+    const payload: PayloadObject = {};
+    payload[labelType] = lists;
+    editNewList.mutate(payload);
   };
 
   return (
     <EdiText
       type="text"
-      value={newName}
+      value={name}
       onSave={handleEditList}
       editOnViewClick={true}
       hideIcons={true}
@@ -38,22 +46,18 @@ const EditableLabel = ({ listId, name }: EditableLabelProps) => {
 
 interface EditableSingleLabelProps {
   name: string;
-  setName: Dispatch<SetStateAction<string>>;
 }
-const EditableSingleLabel = ({ name, setName }: EditableSingleLabelProps) => {
-  const [newName, setNewName] = useState(name);
-
+const EditableSingleLabel = ({ name }: EditableSingleLabelProps) => {
   const editNewList = useEditProduct();
 
   const handleEditList = (newName: string) => {
-    editNewList.mutate(newName);
-    setNewName(newName);
+    editNewList.mutate({ investmentEffort: newName });
   };
 
   return (
     <EdiText
       type="text"
-      value={newName}
+      value={name}
       onSave={handleEditList}
       editOnViewClick={true}
       hideIcons={true}

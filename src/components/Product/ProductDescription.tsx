@@ -18,6 +18,7 @@ interface Props {
 const ProductDescription = ({ product, trlList }: Props) => {
   const { categories, businessModels, trl, investmentEffort } = product;
   const isEditingPage = useSelector((state: RootState) => state.app.isEditing);
+
   return (
     <Card className="py-5 px-2.5 lg:py-[30px] lg:px-5">
       <h2 className="mb-5">
@@ -37,12 +38,20 @@ const ProductDescription = ({ product, trlList }: Props) => {
       >
         <div className="flex items-start gap-[6px]">
           <GoGear className="w-6 h-6 text-[#9CA3AF]" />
-          <LabelGroup title="Categories" lists={categories} />
+          <LabelGroup
+            title="Categories"
+            lists={categories}
+            labelType="categories"
+          />
         </div>
 
         <div className="flex items-start gap-[6px]">
           <FaRegChessKnight className="w-6 h-6 text-[#9CA3AF]" />
-          <LabelGroup title="Business Models" lists={businessModels} />
+          <LabelGroup
+            title="Business Models"
+            lists={businessModels}
+            labelType="businessModels"
+          />
         </div>
 
         {trlList && (

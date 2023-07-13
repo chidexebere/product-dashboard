@@ -21,6 +21,9 @@ const RichTextEditor = ({ contentFromAPI }: Props) => {
     EditorState.createWithContent(content),
   );
   const [convertedContent, setConvertedContent] = useState('');
+  const [isEditing, setIsEditing] = useState(true);
+  const isEditingPage = useSelector((state: RootState) => state.app.isEditing);
+  const editDescription = useEditProduct();
 
   const handleEditorChange = (state: EditorState) => {
     setEditorState(state);
@@ -30,17 +33,12 @@ const RichTextEditor = ({ contentFromAPI }: Props) => {
     setConvertedContent(unescapedHTML);
   };
 
-  const [isEditing, setIsEditing] = useState(true);
-  const isEditingPage = useSelector((state: RootState) => state.app.isEditing);
-  const editDescription = useEditProduct();
-
   const handleEditing = () => {
     setIsEditing(!isEditing);
   };
 
   const handleSave = () => {
-    const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-    editDescription.mutate(data);
+    editDescription.mutate({ description: convertedContent });
     handleEditing();
   };
 

@@ -8,8 +8,9 @@ import Label from '.';
 interface Props {
   lists: ListObject[];
   title: string;
+  labelType: string;
 }
-const LabelGroup = ({ lists, title }: Props) => {
+const LabelGroup = ({ lists, title, labelType }: Props) => {
   const [newLists, setNewLists] = useState(lists);
 
   const isEditingPage = useSelector((state: RootState) => state.app.isEditing);
@@ -25,7 +26,12 @@ const LabelGroup = ({ lists, title }: Props) => {
           <div className="flex flex-wrap items-start gap-[5px]">
             {newLists.map((list) => (
               <div key={`${list.id}`}>
-                <EditableLabel name={list.name} listId={list.id} />
+                <EditableLabel
+                  name={list.name}
+                  listId={list.id}
+                  labelType={labelType}
+                  lists={lists}
+                />
               </div>
             ))}
           </div>

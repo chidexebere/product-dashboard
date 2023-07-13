@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../appState/store';
 import EdiText from 'react-editext';
@@ -8,15 +7,12 @@ interface Props {
   text: string;
 }
 const Title = ({ text }: Props) => {
-  const [newTitle, setNewTitle] = useState(text);
-
   const isEditingPage = useSelector((state: RootState) => state.app.isEditing);
 
   const editTitle = useEditProduct();
 
   const handleEditTitle = (editedTitle: string) => {
-    editTitle.mutate(editedTitle);
-    setNewTitle(editedTitle);
+    editTitle.mutate({ name: editedTitle });
   };
 
   return (
@@ -24,7 +20,7 @@ const Title = ({ text }: Props) => {
       {isEditingPage ? (
         <EdiText
           type="text"
-          value={newTitle}
+          value={text}
           onSave={handleEditTitle}
           editOnViewClick={true}
           hideIcons={true}
@@ -39,7 +35,7 @@ const Title = ({ text }: Props) => {
           }}
         />
       ) : (
-        <h2>{newTitle}</h2>
+        <h2>{text}</h2>
       )}
     </>
   );

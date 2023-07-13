@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../appState/store';
 import YouTube from 'react-youtube';
@@ -9,18 +8,15 @@ interface Props {
   videoURL: string;
 }
 const VideoPlayer = ({ videoURL }: Props) => {
-  const [newVideoURL, setNewVideoURL] = useState(videoURL);
-
   const isEditingPage = useSelector((state: RootState) => state.app.isEditing);
 
   const editVideoURL = useEditProduct();
 
   const handleEdit = (editedVideoURL: string) => {
-    editVideoURL.mutate(editedVideoURL);
-    setNewVideoURL(editedVideoURL);
+    editVideoURL.mutate({ video: editedVideoURL });
   };
 
-  const videoID = newVideoURL.split('v=')[1];
+  const videoID = videoURL.split('v=')[1];
 
   return (
     <>

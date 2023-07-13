@@ -1,6 +1,6 @@
 import Layout from '../layout';
 import Loading from './loading';
-import { useProduct, useTrl } from '../api/hooks';
+import { useCachedProduct, useProduct, useTrl } from '../api/hooks';
 import ProductHeader from '../components/Product/ProductHeader';
 import ProductInfo from '../components/Product/ProductInfo';
 import ProductVideo from '../components/Product/ProductVideo';
@@ -17,6 +17,8 @@ interface Props {
 const Product = ({ configData }: Props) => {
   const { isLoading, isError, data } = useProduct();
   const { data: trl } = useTrl();
+  const cacheData = useCachedProduct();
+  const newData = cacheData !== undefined ? cacheData : data;
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -50,12 +52,12 @@ const Product = ({ configData }: Props) => {
 
   return (
     <Layout>
-      {data && trl && (
+      {newData && trl && (
         <div className="flex flex-col gap-5 px-2.5 py-5 lg:p-0">
-          <ProductHeader product={data} />
-          <ProductInfo product={data} configData={configData} />
-          <ProductVideo product={data} />
-          <ProductDescription product={data} trlList={trl} />
+          <ProductHeader product={newData} />
+          <ProductInfo product={newData} configData={configData} />
+          <ProductVideo product={newData} />
+          <ProductDescription product={newData} trlList={trl} />
         </div>
       )}
     </Layout>

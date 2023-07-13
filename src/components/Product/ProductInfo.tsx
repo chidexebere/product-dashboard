@@ -26,6 +26,7 @@ const ProductInfo = ({ product, configData }: Props) => {
         isEditing={isEditingPage}
         mainColor={mainColor}
         name={type.name}
+        type={type}
         icon={<LiaAwardSolid className="w-5 h-5 text-white" />}
       />
       <div className="flex flex-col lg:flex-row justify-center lg:items-center">

@@ -1,6 +1,7 @@
 import React, { ReactNode, useState } from 'react';
 import { HiCheck, HiChevronDown } from 'react-icons/hi';
 import cn from 'classnames';
+import { useEditProduct } from '../../api/hooks';
 
 interface DropdownOptionProps {
   value: string;
@@ -53,6 +54,8 @@ const EditableDropdown = ({ value, options, icon }: DropdownProps) => {
     showOptions: false,
   });
 
+  const editDropdown = useEditProduct();
+
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setState((prev) => ({ ...prev, showOptions: !state.showOptions }));
@@ -60,6 +63,8 @@ const EditableDropdown = ({ value, options, icon }: DropdownProps) => {
 
   const updateValue = (value: string) => {
     setState((prev) => ({ ...prev, showOptions: false, value }));
+    const payload = options.find((item) => item.name === value) as TrlObject;
+    editDropdown.mutate({ trl: payload });
   };
 
   if (!icon) {

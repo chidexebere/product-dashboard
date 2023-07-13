@@ -9,7 +9,6 @@ interface Props {
 }
 
 const Image = ({ imgUrl, isEditing }: Props) => {
-  const [newImgUrl, setNewImgUrl] = useState(imgUrl);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleForm = () => {
@@ -19,8 +18,7 @@ const Image = ({ imgUrl, isEditing }: Props) => {
   const editImageUrl = useEditProduct();
 
   const handleEditImage = (newImgUrl: string) => {
-    editImageUrl.mutate(newImgUrl);
-    setNewImgUrl(newImgUrl);
+    editImageUrl.mutate({ picture: newImgUrl });
     toggleForm();
   };
 
@@ -32,7 +30,7 @@ const Image = ({ imgUrl, isEditing }: Props) => {
             {isOpen ? (
               <EdiText
                 type="text"
-                value={newImgUrl}
+                value={imgUrl}
                 onSave={handleEditImage}
                 onCancel={toggleForm}
                 editOnViewClick={true}
@@ -57,7 +55,7 @@ const Image = ({ imgUrl, isEditing }: Props) => {
             )}
           </span>
           <img
-            src={newImgUrl}
+            src={imgUrl}
             alt="product picture"
             loading="lazy"
             width="300"
@@ -66,7 +64,7 @@ const Image = ({ imgUrl, isEditing }: Props) => {
         </>
       ) : (
         <img
-          src={newImgUrl}
+          src={imgUrl}
           alt="product picture"
           loading="lazy"
           width="300"
