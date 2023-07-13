@@ -26,13 +26,13 @@ const postData = async (endpoint: string, requestBody: string) => {
   return jsonResponse;
 };
 
-const editData = async (endpoint: string, requestBody: ListObject | string) => {
+const editData = async (endpoint: string, payload: PayloadObject) => {
   const postRequest = fetch(endpoint, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(requestBody),
+    body: JSON.stringify(payload),
   });
   const response = await postRequest;
 
